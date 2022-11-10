@@ -4,8 +4,9 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import ColorTabs from "../global/ColoredTab";
 
-const Contacts = () => {
+const Students = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -55,9 +56,10 @@ const Contacts = () => {
   return (
     <Box m="20px">
       <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
+        title="STUDENTS"
+        subtitle="List of Admitted Students"
       />
+            <ColorTabs value="one"/>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -100,4 +102,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default Students;
