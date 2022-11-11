@@ -4,39 +4,44 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ColorRadioButtons from '../radio_btn';
+import { useState } from "react";
+
 const Form1 = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [selectedValue, setSelectedValue] = React.useState();
-  const [selectedGender, setSelectedGender] = React.useState();
-  const [selectedNationality, setSelectedNationality] = React.useState();
+  const [btnChange, setBtnChange] = useState({selectedValue: "mr",
+  selectedGender: "",
+  selectedNationality: "",
+  });
   
-  let submitted;
   const handleFormSubmit = (values) => {
-    submitted = 1;
-    // e.preventDefault();
-    props.handleFormChange(values);
+    const NewValues = Object.assign(values, {form1Submitted: 1});
+    props.handleFormChange(NewValues);
      props.handlePage();
   };
-  const valueGet = (val) => {
-    setSelectedValue(val);
+
+
+  const handleBtnChange = (event) => {
+    let val = event.target.value;
+      
+    if (val === 'mr' || val === 'ms') {
+      setBtnChange({...btnChange, selectedValue : val});
+    }
+    if (val === 'male' || val === 'feMale') {
+      setBtnChange({...btnChange, selectedGender : val});
+    }
+    if (val === 'kenya' || val === 'other') {
+      setBtnChange({...btnChange, selectedNationality : val});
+    }
   }
-
-    const valueGetGender = (val) => {
-    setSelectedGender(val);
-  }
-
-  const valueGetNationality = (val) => {
-
-    setSelectedNationality(val);
-  }
-
+const {selectedValue, selectedGender, selectedNationality} =btnChange
   return (
     <>
+   
     <Box m="100px" mt="15px">
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={Object.assign(initialValues, props.student)}
         validationSchema={checkoutSchema}
       >
         {({
@@ -48,7 +53,6 @@ const Form1 = (props) => {
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
-            {submitted === 1 }
             <Box
               display="grid"
               gap="20px"
@@ -60,11 +64,12 @@ const Form1 = (props) => {
                 <Box sx={{ gridColumn: "span 7" }}
                 >
                 <ColorRadioButtons
+                handleBtnChange={handleBtnChange}
+                btnChange={btnChange}
                 name='selectedValue'
                 value={values.selectedValue}
                 onBlur={handleBlur}
                 onChange={(values.selectedValue = selectedValue)}
-                valueGet={valueGet}
                 title="Title"
                 value1="mr"
                 value2="ms"
@@ -81,7 +86,7 @@ const Form1 = (props) => {
                 label="Surname"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={props.student.surName ? props.student.surName: values.surName}
+                value={values.surName}
                 name="surName"
                 error={!!touched.surName && !!errors.surName}
                 helperText={touched.surName && errors.surName}
@@ -110,7 +115,7 @@ const Form1 = (props) => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Fast Name"
+                label={values.form1Submitted}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.fastName}
@@ -173,10 +178,11 @@ const Form1 = (props) => {
 
               <Box sx={{ gridColumn: "span 7" }}>
                 <ColorRadioButtons
+                handleBtnChange={handleBtnChange}
+                btnChange={btnChange}
                 name='selectedGender'
                 value={values.selectedGender}
                 onChange={(values.selectedGender = selectedGender)}
-                valueGetGender={valueGetGender}
                 title="Gender"
                 value1="male"
                 value2="feMale"
@@ -225,10 +231,11 @@ const Form1 = (props) => {
                 >
                   
                 <ColorRadioButtons
+                handleBtnChange={handleBtnChange}
+                btnChange={btnChange}
                 name='selectedNationality'
                 value={values.selectedNationality}
                 onChange={(values.selectedNationality = selectedNationality)}
-                valueGetNationality={valueGetNationality}
                 title="Nationality"
                 value1="kenya"
                 value2="other"

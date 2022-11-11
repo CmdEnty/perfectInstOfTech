@@ -3,32 +3,13 @@ import * as React from 'react';
 import Radio from '@mui/material/Radio';
 import { Box } from '@mui/material';
 
-export default function ColorRadioButtons(Props) {
-  const [selectedValue, setSelectedValue] = React.useState();
-   const {title, value1, value2, span1, span2, msg, msg1, msg2, msg3,
-           valueGet, valueGetGender, valueGetNationality, valueGetSelectedSpecialNeeds} = Props;
-
-  const handleChange = (event) => {
-    let val = event.target.value;
-    setSelectedValue(val);
-    if (val === 'mr' || val === 'ms') {
-      valueGet(val);
-    }
-    if (val === 'male' || val === 'feMale') {
-      valueGetGender(val);
-    }
-    if (val === 'kenya' || val === 'other') {
-      valueGetNationality(val);
-    }
-    if (val === 'yes' || val === 'no') {
-      valueGetSelectedSpecialNeeds(val);
-    }
-  };
+export default function ColorRadioButtons(props) {
+   const {title, value1, value2, span1, span2, msg, msg1, msg2, msg3} = props;
 
   const controlProps = (item) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
+    checked:  Object.values(props.btnChange).includes(item),
+    onChange: item => props.handleBtnChange(item),
+    value: 'mr',
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
   });

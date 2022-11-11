@@ -74,7 +74,7 @@ export default function StudentFormTab(props) {
           aria-label="full width tabs example"
         >
           <Tab label="Personal Information" {...a11yProps(0)} />
-          <Tab label={props.student.surName} disabled={page < 1} {...a11yProps(1)} />
+          <Tab label={props.student.selctedValue} disabled={page < 1} {...a11yProps(1)} />
           <Tab label="Next Of Kin" disabled={page < 2}{...a11yProps(2)} />
           <Tab label="Comfirmation" disabled={page < 3}{...a11yProps(3)} />
         </Tabs>

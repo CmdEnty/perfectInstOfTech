@@ -6,18 +6,20 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ColorRadioButtons from '../radio_btn';
 const Form2 = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [selectedSpecialNeeds, setSelectedSpecialNeeds] = React.useState();
+  const [btnChange, setBtnChange] = React.useState({selectedSpecialNeeds: ""});
 
-  const handleFormSubmit = (e) => {
-    // e.preventDefault();
+  const handleFormSubmit = (values) => {
+    const NewValues = Object.assign(values, {form2Submitted: 1});
+    props.handleFormChange(NewValues);
      props.handlePage();
   };
 
-  const valueGetSelectedSpecialNeeds = (val) => {
-
-    setSelectedSpecialNeeds(val);
+  const handleBtnChange = (event) => {
+    let val = event.target.value;
+    setBtnChange(val);
   }
 
+  const selectedSpecialNeeds = btnChange
   return (
     <>
     <Box m="100px" mt="15px">
@@ -312,10 +314,11 @@ const Form2 = (props) => {
                 >
                   
                 <ColorRadioButtons
+                handleBtnChange={handleBtnChange}
+                btnChange={btnChange}
                 name='selectedSpecialNeeds'
                 value={values.selectedSpecialNeeds}
                 onChange={(values.selectedSpecialNeeds = selectedSpecialNeeds)}
-                valueGetSelectedSpecialNeeds={valueGetSelectedSpecialNeeds}
                 title="Do you have any special needs?"
                 value1="no"
                 value2="yes"
