@@ -15,7 +15,7 @@ function AddStudent() {
   selectedGender: "",
   idNo: "",
   selectedNationality: "",
-  nationality: "N/A",
+  nationality: "",
 
   form2Submitted: "",
   selectedSpecialNeeds: "",
@@ -25,17 +25,20 @@ function AddStudent() {
   county: "",
   location: "",
   phone: "",
-  
+  email: "",
   maritalStatus: "",
-  specialNeeds: "N/A",
-  stateFullName: "",
-  stateLocation: "",
-  statePhone: "",
-  stateEmail: "",
-  stateSelectedNationality: "",
-  statePassportNumber: "N/A",
-  stateNationality: "N/Aaaaaaaaaaa",
-  stateIdNo: "N/A",
+  specialNeeds: "",
+  
+  form3Submitted: "",
+  fullName: "",
+  p_location: "",
+  p_phone: "",
+  p_email: "",
+  relationShip: "",
+  p_selectedNationality: "",
+  passportNumber: "",
+  p_nationality: "",
+  p_idNo: "",
   });
 
   const handleFormChange = (values) => {

@@ -8,9 +8,9 @@ import { useState } from "react";
 
 const Form1 = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [btnChange, setBtnChange] = useState({selectedValue: "mr",
-  selectedGender: "",
-  selectedNationality: "",
+  const [btnChange, setBtnChange] = useState({selectedValue: props.student.selectedValue,
+  selectedGender: props.student.selectedGender,
+  selectedNationality: props.student.selectedNationality,
   });
   
   const handleFormSubmit = (values) => {
@@ -23,13 +23,13 @@ const Form1 = (props) => {
   const handleBtnChange = (event) => {
     let val = event.target.value;
       
-    if (val === 'mr' || val === 'ms') {
+    if (val === 'Mr' || val === 'Ms') {
       setBtnChange({...btnChange, selectedValue : val});
     }
-    if (val === 'male' || val === 'feMale') {
+    if (val === 'Male' || val === 'Female') {
       setBtnChange({...btnChange, selectedGender : val});
     }
-    if (val === 'kenya' || val === 'other') {
+    if (val === 'Kenya' || val === 'Other') {
       setBtnChange({...btnChange, selectedNationality : val});
     }
   }
@@ -71,8 +71,8 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 onBlur={handleBlur}
                 onChange={(values.selectedValue = selectedValue)}
                 title="Title"
-                value1="mr"
-                value2="ms"
+                value1="Mr"
+                value2="Ms"
                 span1="Mr"
                 span2="Ms."
                 error={!!touched.selectedValue && !!errors.selectedValue}
@@ -115,7 +115,7 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 fullWidth
                 variant="filled"
                 type="text"
-                label={values.form1Submitted}
+                label="Fast Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.fastName}
@@ -184,8 +184,8 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 value={values.selectedGender}
                 onChange={(values.selectedGender = selectedGender)}
                 title="Gender"
-                value1="male"
-                value2="feMale"
+                value1="Male"
+                value2="Female"
                 span1="Male"
                 span2="Female"
                 error={!!touched.selectedGender && !!errors.selectedGender}
@@ -235,10 +235,13 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 btnChange={btnChange}
                 name='selectedNationality'
                 value={values.selectedNationality}
-                onChange={(values.selectedNationality = selectedNationality)}
+                onChange={(values.selectedNationality = selectedNationality,
+                          selectedNationality === 'Kenya' ? values.nationality="N/A":
+                          selectedNationality === 'Other' && values.nationality==="N/A" ? 
+                          values.nationality="":'')}
                 title="Nationality"
-                value1="kenya"
-                value2="other"
+                value1="Kenya"
+                value2="Other"
                 span1="Kenya"
                 span2="Other"
                 error={!!touched.selectedNationality && !!errors.selectedNationality}
@@ -246,7 +249,7 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 />
                 </Box>
 
-                {selectedNationality === 'other' && (
+                {selectedNationality === 'Other' && (
                     <TextField
                 fullWidth
                 variant="filled"
@@ -256,7 +259,7 @@ const {selectedValue, selectedGender, selectedNationality} =btnChange
                 onChange={handleChange}
                 value={values.nationality}
                 name="nationality"
-                error={selectedNationality === 'other' && (!!touched.nationality && !!errors.nationality)}
+                error={selectedNationality === 'Other' && (!!touched.nationality && !!errors.nationality)}
                 helperText={touched.nationality && errors.nationality}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
@@ -314,7 +317,7 @@ const initialValues = {
   selectedGender: "",
   idNo: "",
   selectedNationality: "",
-  nationality: "N/A",
+  nationality: "",
 };
 
 export default Form1;

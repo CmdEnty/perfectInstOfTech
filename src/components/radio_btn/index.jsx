@@ -9,7 +9,7 @@ export default function ColorRadioButtons(props) {
   const controlProps = (item) => ({
     checked:  Object.values(props.btnChange).includes(item),
     onChange: item => props.handleBtnChange(item),
-    value: 'mr',
+    value: item,
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
   });
@@ -22,6 +22,9 @@ export default function ColorRadioButtons(props) {
         }}/><span>{span1}</span>
       <Radio {...controlProps(value2)} color="success" sx={{
            color: msg1 || msg || msg2 || msg3 ? 'red':'',
+           '&.Mui-checked': {
+            color: '#0ba2de',
+          },
         }}/><span>{span2}</span><br />
       <Box color="red">{msg}</Box>
       <Box color="red">{msg1}</Box>

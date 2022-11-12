@@ -12,7 +12,7 @@ const PendingStudents = () => {
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "admissionNo", headerName: "Admission Number" },
     {
       field: "name",
       headerName: "Name",
@@ -37,8 +37,8 @@ const PendingStudents = () => {
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "location",
+      headerName: "Location",
       flex: 1,
     },
     {
@@ -47,8 +47,8 @@ const PendingStudents = () => {
       flex: 1,
     },
     {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "idNo",
+      headerName: "ID Number",
       flex: 1,
     },
   ];

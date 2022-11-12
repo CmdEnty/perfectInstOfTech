@@ -9,6 +9,7 @@ import { Box } from '@mui/material';
 import Form1 from '../studentForms/form1';
 import Form2 from '../studentForms/form2';
 import Form3 from '../studentForms/form3';
+import ConfirmationForm from '../confirmationForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,6 +54,12 @@ export default function StudentFormTab(props) {
     setPage(newValue);
     handleChangeIndex(newValue)
   };
+
+    const handlePagePrev = () => {
+    const newValue = value-1
+    handleChangeIndex(newValue)
+  };
+
     const handleChange = (e, newValue) => {
       e.preventDefault();
     setValue(newValue);
@@ -74,7 +81,7 @@ export default function StudentFormTab(props) {
           aria-label="full width tabs example"
         >
           <Tab label="Personal Information" {...a11yProps(0)} />
-          <Tab label={props.student.selctedValue} disabled={page < 1} {...a11yProps(1)} />
+          <Tab label="Basic Information" disabled={page < 1} {...a11yProps(1)} />
           <Tab label="Next Of Kin" disabled={page < 2}{...a11yProps(2)} />
           <Tab label="Comfirmation" disabled={page < 3}{...a11yProps(3)} />
         </Tabs>
@@ -87,7 +94,7 @@ export default function StudentFormTab(props) {
         <TabPanel value={value} index={0} dir={theme.direction}>
             <Box display="flex" mr="10px">
               
-              <Form1 handlePage={handlePage} 
+              <Form1 handlePage={handlePage}  
                      student={props.student}
                     handleFormChange={props.handleFormChange}
                      />
@@ -95,12 +102,29 @@ export default function StudentFormTab(props) {
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
             <Box display="flex" mr="10px">
-              <Form2 handlePage={handlePage}/>
+              <Form2 handlePage={handlePage}
+                   handlePagePrev={handlePagePrev}
+                   student={props.student}
+                    handleFormChange={props.handleFormChange}
+              />
             </Box>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
             <Box display="flex" mr="10px">
-              <Form3 handlePage={handlePage}/>
+              <Form3 handlePage={handlePage}
+                    handlePagePrev={handlePagePrev}
+                    student={props.student}
+                    handleFormChange={props.handleFormChange}
+              />
+            </Box>
+        </TabPanel>
+                <TabPanel value={value} index={3} dir={theme.direction}>
+            <Box display="flex" mr="10px">
+              <ConfirmationForm handlePage={handlePage}
+                    handlePagePrev={handlePagePrev}
+                    student={props.student}
+                    handleFormChange={props.handleFormChange}
+              />
             </Box>
         </TabPanel>
       </Box>

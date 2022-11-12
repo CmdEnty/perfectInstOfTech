@@ -6,17 +6,25 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ColorRadioButtons from '../radio_btn';
 const Form2 = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [selectedNationality, setSelectedNationality] = React.useState();
+  const [btnChange, setBtnChange] = React.useState({p_selectedNationality: props.student.p_selectedNationality});
 
-  const handleFormSubmit = (e) => {
-    // e.preventDefault();
+  const handleFormSubmit = (values) => {
+    const NewValues = Object.assign(values, {form3Submitted: 1});
+    props.handleFormChange(NewValues);
      props.handlePage();
   };
 
-  const valueGetNationality = (val) => {
-
-    setSelectedNationality(val);
+  const handleBtnChange = (event) => {
+    let val = event.target.value;
+    setBtnChange({...btnChange, p_selectedNationality : val});
   }
+
+    const pagePrev = (values) => {
+    props.handleFormChange(values);
+    props.handlePagePrev();
+  }
+
+  const {p_selectedNationality} = btnChange
 
   return (
     <>
@@ -24,7 +32,7 @@ const Form2 = (props) => {
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={Object.assign(initialValues, props.student)}
         validationSchema={checkoutSchema}
       >
         {({
@@ -83,10 +91,10 @@ const Form2 = (props) => {
                 label="Location"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.location}
-                name="location"
-                error={!!touched.location && !!errors.location}
-                helperText={touched.location && errors.location}
+                value={values.p_location}
+                name="p_location"
+                error={!!touched.p_location && !!errors.p_location}
+                helperText={touched.p_location && errors.p_location}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
                   input: {
@@ -115,10 +123,10 @@ const Form2 = (props) => {
                 label="Phone Number"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.phone}
-                name="phone"
-                error={!!touched.phone && !!errors.phone}
-                helperText={touched.phone && errors.phone}
+                value={values.p_phone}
+                name="p_phone"
+                error={!!touched.p_phone && !!errors.p_phone}
+                helperText={touched.p_phone && errors.p_phone}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
                input: {
@@ -146,10 +154,10 @@ const Form2 = (props) => {
                 label="Email (optional)"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
+                value={values.p_email}
+                name="p_email"
+                error={!!touched.p_email && !!errors.p_email}
+                helperText={touched.p_email && errors.p_email}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
                  input: {
@@ -212,25 +220,28 @@ const Form2 = (props) => {
                 >
                   
                  <ColorRadioButtons
-                name='selectedNationality'
-                value={values.selectedNationality}
-                onChange={(values.selectedNationality = selectedNationality, 
-                  selectedNationality === 'kenya'? (values.nationality = 'N/A', values.passportNumber="N/A"): 
-                  (values.nationality = '', values.passportNumber=""), 
-                  selectedNationality === 'other'? values.idNo = "N/A": values.idNo = '' 
-                  )}
-                valueGetNationality={valueGetNationality}
+                handleBtnChange={handleBtnChange}
+                btnChange={btnChange}
+                name='p_selectedNationality'
+                value={values.p_selectedNationality}
+                onChange={(values.p_selectedNationality = p_selectedNationality,
+                          p_selectedNationality === 'Kenya' ? (values.p_nationality="N/A", values.passportNumber="N/A"):
+                          p_selectedNationality === 'Other' && values.p_nationality==="N/A" ? 
+                          (values.p_nationality="", values.passportNumber=""):
+                          p_selectedNationality === 'Other' ?  values.p_idNo="N/A":'',
+                          p_selectedNationality === 'Kenya' && values.p_idNo==="N/A" ? 
+                          values.p_idNo="":'')}
                 title="Nationality"
-                value1="kenya"
-                value2="other"
+                value1="Kenya"
+                value2="Other"
                 span1="Kenya"
                 span2="Other"
-                error={!!touched.selectedNationality && !!errors.selectedNationality}
-                msg2={!selectedNationality && (touched.selectedNationality && errors.selectedNationality)}
+                error={!!touched.p_selectedNationality && !!errors.p_selectedNationality}
+                msg2={!p_selectedNationality && (touched.p_selectedNationality && errors.p_selectedNationality)}
                 />
                 </Box>
 
-                {selectedNationality === 'other' && (
+                {p_selectedNationality === 'Other' && (
                 <TextField
                 fullWidth
                 variant="filled"
@@ -238,10 +249,10 @@ const Form2 = (props) => {
                 label="Please specify your Nationality"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.nationality}
-                name="nationality"
-                error={selectedNationality === 'other' && (!!touched.nationality && !!errors.nationality)}
-                helperText={touched.nationality && errors.nationality}
+                value={values.p_nationality}
+                name="p_nationality"
+                error={p_selectedNationality === 'Other' && (!!touched.p_nationality && !!errors.p_nationality)}
+                helperText={touched.p_nationality && errors.p_nationality}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
                  input: {
@@ -266,17 +277,17 @@ const Form2 = (props) => {
               />
                 )}
            
-           {selectedNationality === 'other' && (
+           {p_selectedNationality === 'Other' && (
                 <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Passport Number"
+                label="Passport Number/Alien ID"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.passportNumber === "N/A" ? "": values.passportNumber}
+                value={values.passportNumber}
                 name="passportNumber"
-                error={selectedNationality === 'other' && (!!touched.passportNumber && !!errors.passportNumber)}
+                error={p_selectedNationality === 'Other' && (!!touched.passportNumber && !!errors.passportNumber)}
                 helperText={touched.passportNumber && errors.passportNumber}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
@@ -302,7 +313,7 @@ const Form2 = (props) => {
               />
                 )}
 
-                {selectedNationality === 'kenya' && (
+                {p_selectedNationality === 'Kenya' && (
                     <TextField
                 fullWidth
                 variant="filled"
@@ -310,10 +321,10 @@ const Form2 = (props) => {
                 label="ID No"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.idNo === "N/A" ? "": values.idNo}
-                name="idNo"
-                error={!!touched.idNo && !!errors.idNo}
-                helperText={touched.idNo && errors.idNo}
+                value={values.p_idNo}
+                name="p_idNo"
+                error={!!touched.p_idNo && !!errors.p_idNo}
+                helperText={touched.p_idNo && errors.p_idNo}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
                  input: {
@@ -340,7 +351,7 @@ const Form2 = (props) => {
 
             </Box>
             <Box display="flex" mt="50px" gap="450px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" color="secondary" variant="contained" onClick={() => pagePrev(values)}>
                 PREVIOUS
               </Button>
               <Button type="submit" color="secondary" variant="contained">
@@ -357,23 +368,25 @@ const Form2 = (props) => {
 
 const checkoutSchema = yup.object().shape({
   fullName: yup.string().required("required"),
-  location: yup.string().required("required"),
-  phone: yup.string().required("required"),
-  email: yup.string().required("required"),
-  selectedNationality: yup.string().required("You must select one the buttons"),
+  p_location: yup.string().required("required"),
+  p_phone: yup.string().required("required"),
+  p_email: yup.string().required("required"),
+  relationShip: yup.string().required("required"),
+  p_selectedNationality: yup.string().required("You must select one the buttons"),
   passportNumber: yup.string().required("required"),
-  nationality: yup.string().required("required"),
-  idNo: yup.string().required("required"),
+  p_nationality: yup.string().required("required"),
+  p_idNo: yup.string().required("required"),
 });
 const initialValues = {
   fullName: "",
-  location: "",
-  phone: "",
-  email: "",
-  selectedNationality: "",
-  passportNumber: "N/A",
-  nationality: "N/A",
-  idNo: "N/A",
+  p_location: "",
+  p_phone: "",
+  p_email: "",
+  relationShip: "",
+  p_selectedNationality: "",
+  passportNumber: "",
+  p_nationality: "",
+  p_idNo: "",
 };
 
 export default Form2;

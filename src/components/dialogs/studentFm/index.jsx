@@ -12,15 +12,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function StudentFormDialog() {
   const [open, setOpen] = React.useState(true);
 
-   const openDialog = () => {
 
-   }
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
 
   const handleClose = () => {
     setOpen(false);
@@ -46,7 +44,6 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClose}>Disagree</Button> */}
           <Button href="addStudent">
             <Typography color="white !important">OK</Typography>
             </Button>

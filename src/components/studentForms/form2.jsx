@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ColorRadioButtons from '../radio_btn';
 const Form2 = (props) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [btnChange, setBtnChange] = React.useState({selectedSpecialNeeds: ""});
+  const [btnChange, setBtnChange] = React.useState({selectedSpecialNeeds: props.student.selectedSpecialNeeds});
 
   const handleFormSubmit = (values) => {
     const NewValues = Object.assign(values, {form2Submitted: 1});
@@ -16,17 +16,22 @@ const Form2 = (props) => {
 
   const handleBtnChange = (event) => {
     let val = event.target.value;
-    setBtnChange(val);
+    setBtnChange({...btnChange, selectedSpecialNeeds : val});
   }
 
-  const selectedSpecialNeeds = btnChange
+  const pagePrev = (values) => {
+    props.handleFormChange(values);
+    props.handlePagePrev();
+  }
+
+  const {selectedSpecialNeeds} = btnChange
   return (
     <>
     <Box m="100px" mt="15px">
 
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={Object.assign(initialValues, props.student)}
         validationSchema={checkoutSchema}
       >
         {({
@@ -318,18 +323,21 @@ const Form2 = (props) => {
                 btnChange={btnChange}
                 name='selectedSpecialNeeds'
                 value={values.selectedSpecialNeeds}
-                onChange={(values.selectedSpecialNeeds = selectedSpecialNeeds)}
+                onChange={(values.selectedSpecialNeeds = selectedSpecialNeeds,
+                          selectedSpecialNeeds === 'No' ? values.specialNeeds="N/A":
+                          selectedSpecialNeeds === 'Yes' && values.specialNeeds==="N/A" ? 
+                          values.nationality="":'')}
                 title="Do you have any special needs?"
-                value1="no"
-                value2="yes"
-                span1="no"
-                span2="yes"
+                value1="No"
+                value2="Yes"
+                span1="No"
+                span2="Yes"
                 error={!!touched.selectedSpecialNeeds && !!errors.selectedSpecialNeeds}
                 msg3={!selectedSpecialNeeds && (touched.selectedSpecialNeeds && errors.selectedSpecialNeeds)}
                 />
                 </Box>
 
-                {selectedSpecialNeeds === 'yes' && (
+                {selectedSpecialNeeds === 'Yes' && (
                     <TextField
                 fullWidth
                 variant="filled"
@@ -337,9 +345,9 @@ const Form2 = (props) => {
                 label="Please specify your Special Needs"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.specialNeeds === "N/A" ? '': values.specialNeeds}
+                value={values.specialNeeds}
                 name="specialNeeds"
-                error={selectedSpecialNeeds === 'yes' && (!!touched.specialNeeds && !!errors.specialNeeds)}
+                error={selectedSpecialNeeds === 'Yes' && (!!touched.specialNeeds && !!errors.specialNeeds)}
                 helperText={touched.specialNeeds && errors.specialNeeds}
                 sx={{ gridColumn: "span 2", ".Mui-focused": {
                 color: "#f5079e !important",
@@ -367,7 +375,7 @@ const Form2 = (props) => {
 
             </Box>
             <Box display="flex" mt="50px" gap="450px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button color="secondary" variant="contained" onClick={() => pagePrev(values)}>
                 PREVIOUS
               </Button>
               <Button type="submit" color="secondary" variant="contained">
@@ -401,8 +409,9 @@ const initialValues = {
   county: "",
   location: "",
   phone: "",
+  email: "",
   maritalStatus: "",
-  specialNeeds: "N/A",
+  specialNeeds: "",
 };
 
 export default Form2;
