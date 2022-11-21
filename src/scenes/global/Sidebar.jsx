@@ -6,16 +6,21 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import PaidIcon from '@mui/icons-material/Paid';
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-// import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-// import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-// import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import MoneyOffIcon from '@mui/icons-material/MoneyOff';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import ArticleIcon from '@mui/icons-material/Article';
+import OutboxIcon from '@mui/icons-material/Outbox';
+import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
+import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-// import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+
 
 
 const Sidebar = () => {
@@ -129,9 +134,9 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Students Information"
+              title="Students"
               to="/students"
-              icon={<ContactsOutlinedIcon />}
+              icon={<GroupAddIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -160,21 +165,21 @@ const Sidebar = () => {
             <Item
               title="Fees"
               to="/invoices"
-              icon={<PersonOutlinedIcon />}
+              icon={<PaidIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Salary"
               to="/salary"
-              icon={<PersonOutlinedIcon />}
+              icon={<MoneyOffIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Other Expenditures"
               to="/expenditure"
-              icon={<HelpOutlineOutlinedIcon />}
+              icon={<AccountBalanceIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -189,28 +194,28 @@ const Sidebar = () => {
             <Item
               title="Term"
               to="/term"
-              icon={<PersonOutlinedIcon />}
+              icon={<CalendarMonthIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Course"
               to="/course"
-              icon={<CalendarTodayOutlinedIcon />}
+              icon={<LocalLibraryIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Units"
               to="/unit"
-              icon={<HelpOutlineOutlinedIcon />}
+              icon={<CollectionsBookmarkIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Examination"
               to="/examination"
-              icon={<HelpOutlineOutlinedIcon />}
+              icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -222,24 +227,24 @@ const Sidebar = () => {
             >
               Emails/Sms
             </Typography>
+             <Item
+              title="Inbox"
+              to="/geography"
+              icon={<InboxOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Sent"
-              to="/sent"
-              icon={<PersonOutlinedIcon />}
+              to="/pie"
+              icon={<OutboxIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Drafts"
-              to="/draft"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Units"
-              to="/unit"
-              icon={<HelpOutlineOutlinedIcon />}
+              to="/geography"
+              icon={<DraftsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

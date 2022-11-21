@@ -3,6 +3,8 @@ import React from 'react'
 import ConfirmationCard from '../confirmationCard'
 import Alert from '@mui/material/Alert';
 import StudentFormDialog from '../dialogs/studentFm';
+import { tokens } from "../../theme";
+import { useTheme } from "@mui/material";
 
 export default function ConfirmationForm(props) {
  const {selectedValue, surName, fastName, middleName,selectedGender, idNo,
@@ -13,19 +15,26 @@ export default function ConfirmationForm(props) {
 
     const [open, setOpen] = React.useState(false);
 
+      const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   return (
-    <Box ml="50px">
-      {open && <StudentFormDialog/>}
+    <div>
+    {open && <StudentFormDialog/>}
+    <Box ml="45px">
       <Alert severity="success">
-        <Typography variant='h5' ml="20px">You have Completed the registration Process 
-        Please confirm your data
+        <Typography variant='h5'>You have Completed the registration Process 
+        Please confirm your data before you submit
         </Typography>
         </Alert>
-      <Typography variant='h4' ml="20px">Personal Information</Typography>
+      </Box>
+    <Box overflow="auto" width='45rem' height='40rem'  ml="45px"  mt="25px">
+    <Box  ml="55px">
+      <Typography variant='h4' ml="20px" color={colors.blueAccent[700]} fontWeight="bold">Personal Information</Typography>
       <ConfirmationCard name="Designation" value={selectedValue}/>
       <ConfirmationCard name="Surname" value={surName}/>
       <ConfirmationCard name="Fast Name" value={fastName}/>
@@ -36,7 +45,7 @@ export default function ConfirmationForm(props) {
       {selectedNationality === "Other" && <ConfirmationCard name="Country" value={nationality}/>}
       <br />
 
-      <Typography variant='h4' ml="20px">Basic Information</Typography>
+      <Typography variant='h4' ml="20px" color={colors.blueAccent[700]} fontWeight="bold">Basic Information</Typography>
       <ConfirmationCard name="Course" value={course}/>
       <ConfirmationCard name="Date Of Birth" value={DOB}/>
       <ConfirmationCard name="Place Of Birth" value={placeOfBirth}/>
@@ -49,7 +58,7 @@ export default function ConfirmationForm(props) {
       {selectedSpecialNeeds === "Yes" && <ConfirmationCard name="Special Needs Details" value={specialNeeds}/>}
       <br />
 
-      <Typography variant='h4' ml="20px">Next Of Kin</Typography>
+      <Typography variant='h4' ml="20px" color={colors.blueAccent[700]} fontWeight="bold">Next Of Kin</Typography>
       <ConfirmationCard name="Full Name" value={fullName}/>
       <ConfirmationCard name="Location" value={p_location}/>
       <ConfirmationCard name="Phone Number" value={p_phone}/>
@@ -69,5 +78,7 @@ export default function ConfirmationForm(props) {
               </Button>
             </Box><br /><br />
     </Box>
+    </Box>
+    </div>
   )
 }

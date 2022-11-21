@@ -1,106 +1,146 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import { Box, Button } from '@mui/material';
-import Form1 from '../../components/studentForms/form1';
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { tokens } from "../../theme";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import Header from "../../components/Header";
+import LineChart from "../../components/LineChart";
+import { Link } from "react-router-dom";
+import StudentViewTab from "../../components/studentViewTab";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
-
-export default function Pie() {
+const Dashboard = () => {
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-  const [page, setPage] = React.useState(0);
-
-  const handlePage = (event) => {
-    event.preventDefault()
-    const newValue = value+1
-    setPage(newValue);
-    handleChangeIndex(newValue)
-  };
-    const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
+  const colors = tokens(theme.palette.mode);
 
   return (
-    <Box sx={{ bgcolor: 'background.paper', width: 500 }}>
-      <AppBar position="static">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" disabled={page < 1} {...a11yProps(1)} />
-          <Tab label="Item Three" disabled={page < 2}{...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
+    <Box m="20px">
+      {/* HEADER */}
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="STUDENT VIEW" subtitle="Edit and Manage Student Information" />
+      </Box>
+
+      {/* GRID & CHARTS */}
       <Box
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
+        display="grid"
+        gridTemplateColumns="repeat(12, 1fr)"
+        gridAutoRows="180px"
+        gap="1px"
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-            <Box display="flex" mt="20px">
-              <Form1/>
+        {/* ROW 1 */}
+        <Box
+          gridColumn="span 4"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Box display="flex" justifyContent="center" alignItems="center" mt="-5px">
+                <img
+                  alt="profile-user"
+                  width="150px"
+                  height="100px"
+                  src={`../../assets/user.png`}
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+              </Box>
+              </Box>
+        <Box
+          gridColumn="span 6"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          gap="50px"
+        >
+          <Box mt="-50px" ml="5px">
+            <Typography
+                variant="h4"
+                fontWeight="600"
+                color={colors.grey[100]}
+              >
+                John Jeremy
+              </Typography>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+              >
+                Mombasa, Kenya
+              </Typography>
             </Box>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-                      <Box display="flex" mt="20px">
-              <Button type="submit" onClick={handlePage} color="secondary" variant="contained">
-                Next
+           <Box display="flex" mt="70px" gap="10px">
+              <Button color="secondary" variant="contained">
+                Send Email
               </Button>
-            </Box>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-                      <Box display="flex" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New User
+                Release
+              </Button>
+              <Button type="submit" color="secondary" variant="contained">
+                Delete
               </Button>
             </Box>
-        </TabPanel>
+        </Box>
+       
+
+        {/* ROW 2 */}
+        <Box
+          gridColumn="span 4"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          <Box
+            mt="25px"
+            p="0 30px"
+            display="flex "
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box>
+              <Typography
+                variant="h5"
+                fontWeight="600"
+                color={colors.grey[100]}
+              >
+                Revenue Generated
+              </Typography>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                color={colors.greenAccent[500]}
+              >
+                $59,342.32
+              </Typography>
+            </Box>
+            <Box>
+              <IconButton>
+                <DownloadOutlinedIcon
+                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                />
+              </IconButton>
+            </Box>
+          </Box>
+          <Box height="250px" m="-20px 0 0 0">
+            <LineChart isDashboard={true} />
+          </Box>
+        </Box>
+
+        <Box
+          gridColumn="span 6"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+        >
+          <Box
+            mt="25px"
+            p="0 30px"
+            display="flex "
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <StudentViewTab/>
+            </Box>
+        </Box>
+       
       </Box>
     </Box>
   );
-}
+};
+
+export default Dashboard;

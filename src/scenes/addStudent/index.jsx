@@ -49,7 +49,7 @@ function AddStudent() {
   return (
     <>
     <Box m="30px">
-      <Header title="REGISTER STUDENT" subtitle="Registration Form" />
+      <Header title="REGISTER STUDENT" subtitle="Student Registration Form" />
      </Box>
     <Box m="20px">
       <ColorTabs value="two"/>

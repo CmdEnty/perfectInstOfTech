@@ -3,12 +3,12 @@ import { tokens } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import PendingActionsOutlinedIcon from '@mui/icons-material/PendingActionsOutlined';
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
-// import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
@@ -78,7 +78,7 @@ const Dashboard = () => {
             progress="0.50"
             increase="+21%"
             icon={
-              <PointOfSaleIcon
+              <PeopleOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -97,7 +97,7 @@ const Dashboard = () => {
             progress="0.30"
             increase="+5%"
             icon={
-              <PersonAddIcon
+              <GroupAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -116,7 +116,7 @@ const Dashboard = () => {
             progress="0.80"
             increase="+43%"
             icon={
-              <PersonAddIcon
+              <PendingActionsOutlinedIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
