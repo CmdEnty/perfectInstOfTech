@@ -86,6 +86,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "10001",
     admissionNo: 123512,
+    view: 1,
   },
   {
     id: 2,
@@ -97,6 +98,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "13151",
     admissionNo: 123512,
+    view:2,
   },
   {
     id: 3,
@@ -108,6 +110,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "1315781",
     admissionNo: 5123512,
+    view: 3,
   },
   {
     id: 4,
@@ -119,6 +122,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "543151",
     admissionNo: 3457512,
+    view: 4,
   },
   {
     id: 5,
@@ -130,6 +134,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "3413151",
     admissionNo: 2309512,
+    view: 5,
   },
   {
     id: 6,
@@ -141,6 +146,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "645351",
     admissionNo: 33343512,
+    view: 6,
   },
   {
     id: 7,
@@ -152,6 +158,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "546351",
     admissionNo: 1223512,
+    view: 7,
   },
   {
     id: 8,
@@ -163,6 +170,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "456151",
     admissionNo: 45673512,
+    view: 8,
   },
   {
     id: 9,
@@ -174,6 +182,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "313151",
     admissionNo: 3123512,
+    view: 9,
   },
   {
     id: 10,
@@ -185,6 +194,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "213151",
     admissionNo: 5733512,
+    view: 10,
   },
   {
     id: 11,
@@ -196,6 +206,7 @@ export const mockDataContacts = [
     city: "Mombasa",
     idNo: "315187",
     admissionNo: 512654,
+    view: 11,
   },
 ];
 

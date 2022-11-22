@@ -142,7 +142,7 @@ const Sidebar = () => {
             />
             <Item
               title="Designation"
-              to="/designationz"
+              to="/designation"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

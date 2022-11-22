@@ -77,96 +77,191 @@ export default function StudentViewTab() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Box>
-          <Box mt="-15px" ml="-20px">
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              color={colors.blueAccent[700]}
-            >
-              Surname
-            </Typography>
-            <Box display="flex" gap="10px">
-              <Typography variant="h6" color={colors.grey[200]}>
-                Jeremy
+        <Box display="flex" gap="97px" ml="-5px">
+          <Box>
+            <Box mt="-15px" ml="-20px">
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                Surname
               </Typography>
-              <ModeEditOutlineOutlinedIcon
-                fontSize="small"
-                color="secondary"
-                sx={{ cursor: "pointer" }}
-              />
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  Jeremy
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                Fast Name
+              </Typography>
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  John
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                Middle Name
+              </Typography>
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  N/A
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                Date Of Birth
+              </Typography>
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  04/05/1990
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                ID/Passport No
+              </Typography>
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  N/A
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                color={colors.blueAccent[700]}
+              >
+                Gender
+              </Typography>
+              <Box display="flex" gap="10px">
+                <Typography variant="h6" color={colors.grey[200]}>
+                  Male
+                </Typography>
+                <ModeEditOutlineOutlinedIcon
+                  fontSize="small"
+                  color="secondary"
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
             </Box>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              color={colors.blueAccent[700]}
-            >
-              Fast Name
-            </Typography>
-            <Box display="flex" gap="10px">
-              <Typography variant="h6" color={colors.grey[200]}>
-                John
-              </Typography>
-              <ModeEditOutlineOutlinedIcon
-                fontSize="small"
-                color="secondary"
-                sx={{ cursor: "pointer" }}
-              />
-            </Box>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              color={colors.blueAccent[700]}
-            >
-              Middle Name
-            </Typography>
-            <Box display="flex" gap="10px">
-              <Typography variant="h6" color={colors.grey[200]}>
-                N/A
-              </Typography>
-              <ModeEditOutlineOutlinedIcon
-                fontSize="small"
-                color="secondary"
-                sx={{ cursor: "pointer" }}
-              />
-            </Box>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              color={colors.blueAccent[700]}
-            >
-              Date Of Birth
-            </Typography>
-            <Box display="flex" gap="10px">
-              <Typography variant="h6" color={colors.grey[200]}>
-                04/05/1990
-              </Typography>
-              <ModeEditOutlineOutlinedIcon
-                fontSize="small"
-                color="secondary"
-                sx={{ cursor: "pointer" }}
-              />
-            </Box>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              color={colors.blueAccent[700]}
-            >
-              ID/Passport No
-            </Typography>
-            <Box display="flex" gap="10px">
-              <Typography variant="h6" color={colors.grey[200]}>
-                N/A
-              </Typography>
-              <ModeEditOutlineOutlinedIcon
-                fontSize="small"
-                color="secondary"
-                sx={{ cursor: "pointer" }}
-              />
+          </Box>
+
+          <Box>
+            <Box>
+              <Box mt="-15px" ml="-20px">
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color={colors.blueAccent[700]}
+                >
+                  County Of Birth
+                </Typography>
+                <Box display="flex" gap="10px">
+                  <Typography variant="h6" color={colors.grey[200]}>
+                    Mombasa
+                  </Typography>
+                  <ModeEditOutlineOutlinedIcon
+                    fontSize="small"
+                    color="secondary"
+                    sx={{ cursor: "pointer" }}
+                  />
+                </Box>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color={colors.blueAccent[700]}
+                >
+                  Location
+                </Typography>
+                <Box display="flex" gap="10px">
+                  <Typography variant="h6" color={colors.grey[200]}>
+                    Chaani
+                  </Typography>
+                  <ModeEditOutlineOutlinedIcon
+                    fontSize="small"
+                    color="secondary"
+                    sx={{ cursor: "pointer" }}
+                  />
+                </Box>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color={colors.blueAccent[700]}
+                >
+                  Marital Status
+                </Typography>
+                <Box display="flex" gap="10px">
+                  <Typography variant="h6" color={colors.grey[200]}>
+                    Single
+                  </Typography>
+                  <ModeEditOutlineOutlinedIcon
+                    fontSize="small"
+                    color="secondary"
+                    sx={{ cursor: "pointer" }}
+                  />
+                </Box>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color={colors.blueAccent[700]}
+                >
+                  Special Need
+                </Typography>
+                <Box display="flex" gap="10px">
+                  <Typography variant="h6" color={colors.grey[200]}>
+                    N/A
+                  </Typography>
+                  <ModeEditOutlineOutlinedIcon
+                    fontSize="small"
+                    color="secondary"
+                    sx={{ cursor: "pointer" }}
+                  />
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>
       </TabPanel>
+
       <TabPanel value={value} index={1}>
         <Box>
           <Box mt="-15px" ml="-20px">
@@ -262,11 +357,11 @@ export default function StudentViewTab() {
       {/* next of kin */}
 
       <TabPanel value={value} index={2}>
-                <Box>
+        <Box>
           <Box mt="-20px" ml="-50px">
-        <NextOfKinAccordions/>
-            </Box>
-    </Box>
+            <NextOfKinAccordions />
+          </Box>
+        </Box>
       </TabPanel>
     </Box>
   );

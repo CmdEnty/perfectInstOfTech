@@ -1,10 +1,11 @@
-import { Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 import ColorTabs from "../global/ColoredTab";
+import { Link } from "react-router-dom";
 
 const Students = () => {
   const theme = useTheme();
@@ -50,6 +51,30 @@ const Students = () => {
       field: "idNo",
       headerName: "ID Number",
       flex: 1,
+    },
+    {
+      field: "accessLevel",
+      headerName: "Access Level",
+      flex: 1,
+      renderCell: ({ row: { view } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            justifyContent="center"
+            backgroundColor={colors.greenAccent[600]}
+            borderRadius="4px"
+          >
+            <Link to="/pie" style={{ textDecoration: "none" }}>
+              <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
+                VIEW
+              </Typography>
+            </Link>
+          </Box>
+        );
+      },
     },
   ];
 
