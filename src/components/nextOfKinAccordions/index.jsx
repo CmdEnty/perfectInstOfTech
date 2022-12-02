@@ -18,7 +18,7 @@ export default function NextOfKinAccordions() {
   };
 
   return (
-    <Box overflow="auto" sx={{ width: 470, height: 320 }}>
+    <Box overflow="auto" sx={{ width: 600, height: 320 }}>
       <Box mt="-18px">
         <Accordion
           expanded={expanded === "panel1"}

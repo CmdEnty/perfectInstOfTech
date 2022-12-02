@@ -44,7 +44,6 @@ function AddStudent() {
   const handleFormChange = (values) => {
     setStudent({ ...student, ...values})
   }
-  // alert(student.nationality)
 
   return (
     <>

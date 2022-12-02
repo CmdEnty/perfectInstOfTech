@@ -5,9 +5,11 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { tokens } from "../../theme";
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import Header from "../../components/Header";
+import DesignationModal from "../../components/designationModal";
+import { useState } from "react";
 
 export default function DesignationAccordions() {
   const [expanded, setExpanded] = React.useState(false);
@@ -17,6 +19,17 @@ export default function DesignationAccordions() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+   const [student, setStudent] = useState({
+     title: "",
+     salary: "",
+     description: "",
+     qualifications: "",
+   });
+
+   const handleFormChange = (values) => {
+     setStudent({ ...student, ...values });
+   };
 
   return (
     <>
@@ -31,12 +44,11 @@ export default function DesignationAccordions() {
           subtitle="Add, Edit and Manage Staff Designation"
         />
       </Box>
-      <Box overflow="auto" sx={{ width: 750, height: 700, mt: 5, ml: 15 }}>
+      <Box overflow="auto" sx={{ width: 750, height: 700, mt: 1, ml: 15 }}>
         <Box ml="680px">
-          <Button color="secondary" variant="contained">
-            ADD
-          </Button>
-        </Box><br />
+            <DesignationModal student={student}/>
+        </Box>
+        <br />
         <Box>
           <Accordion
             expanded={expanded === "panel1"}
@@ -55,11 +67,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Full Names
+                    Title
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremy Smalga
+                      Secretary
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -74,11 +86,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Relationship
+                    Salary (Kshs)
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Parent
+                      20,000
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -97,11 +109,17 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Country
+                    Qualification
                   </Typography>
                   <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Kenya
+                    <Typography
+                      display="flex"
+                      variant="h6"
+                      color={colors.grey[200]}
+                    >
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -114,11 +132,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    County
+                    Description
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Mombasa
+                      N/A
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -131,81 +149,13 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Sub County
+                    Responsibilities
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Changamwe
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Location
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Chaani
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                </Box>
-                <Box mt="-15px">
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    ID/Passport
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      3457889767
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Email
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremysmalga@gmail.com
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Phone
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      +25478689777
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -217,7 +167,7 @@ export default function DesignationAccordions() {
               </Box>
             </AccordionDetails>
           </Accordion>
-
+          <br />
           <Accordion
             expanded={expanded === "panel2"}
             onChange={handleChange("panel2")}
@@ -235,11 +185,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Full Names
+                    Title
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremy Smalga
+                      Secretary
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -254,11 +204,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Relationship
+                    Salary (Kshs)
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Parent
+                      25,000
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -277,11 +227,17 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Country
+                    Qualification
                   </Typography>
                   <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Kenya
+                    <Typography
+                      display="flex"
+                      variant="h6"
+                      color={colors.grey[200]}
+                    >
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -294,11 +250,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    County
+                    Description
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Mombasa
+                      N/A
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -311,81 +267,13 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Sub County
+                    Responsibilities
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Changamwe
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Location
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Chaani
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                </Box>
-                <Box mt="-15px">
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    ID/Passport
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      3457889767
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Email
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremysmalga@gmail.com
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Phone
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      +25478689777
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -397,7 +285,7 @@ export default function DesignationAccordions() {
               </Box>
             </AccordionDetails>
           </Accordion>
-
+          <br />
           <Accordion
             expanded={expanded === "panel3"}
             onChange={handleChange("panel3")}
@@ -408,18 +296,18 @@ export default function DesignationAccordions() {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Box display="flex" gap="97px" ml="15px">
+              <Box display="flex" gap="105px" ml="15px">
                 <Box mt="-5px">
                   <Typography
                     variant="h5"
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Full Names
+                    Title
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremy Smalga
+                      Lecturer
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -434,11 +322,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Relationship
+                    Salary (Kshs)
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Parent
+                      30,000
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -457,11 +345,17 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Country
+                    Qualification
                   </Typography>
                   <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Kenya
+                    <Typography
+                      display="flex"
+                      variant="h6"
+                      color={colors.grey[200]}
+                    >
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -474,11 +368,11 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    County
+                    Description
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Mombasa
+                      N/A
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"
@@ -491,81 +385,13 @@ export default function DesignationAccordions() {
                     fontWeight="bold"
                     color={colors.blueAccent[700]}
                   >
-                    Sub County
+                    Responsibilities
                   </Typography>
                   <Box display="flex" gap="10px">
                     <Typography variant="h6" color={colors.grey[200]}>
-                      Changamwe
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Location
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Chaani
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                </Box>
-                <Box mt="-15px">
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    ID/Passport
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      3457889767
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Email
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      Jeremysmalga@gmail.com
-                    </Typography>
-                    <ModeEditOutlineOutlinedIcon
-                      fontSize="small"
-                      color="secondary"
-                      sx={{ cursor: "pointer" }}
-                    />
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    fontWeight="bold"
-                    color={colors.blueAccent[700]}
-                  >
-                    Phone
-                  </Typography>
-                  <Box display="flex" gap="10px">
-                    <Typography variant="h6" color={colors.grey[200]}>
-                      +25478689777
+                      1. Above 25 years <br />
+                      2. Atleast 2 years experience <br />
+                      3. Kenyan Citizen <br />
                     </Typography>
                     <ModeEditOutlineOutlinedIcon
                       fontSize="small"

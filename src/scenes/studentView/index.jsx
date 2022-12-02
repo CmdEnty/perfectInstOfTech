@@ -3,14 +3,25 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import StudentViewTab from "../../components/studentViewTab";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import Tooltip from "@mui/material/Tooltip";
 
 
-const Dashboard = () => {
+const StudentView = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
     <Box m="20px">
+      <Tooltip title="Back">
+        <Link
+          to="/students"
+          style={{ textDecoration: "none", color: colors.grey[100] }}
+        >
+          <ArrowBackOutlinedIcon sx={{ fontSize: 30, mt: -4 }} />
+        </Link>
+      </Tooltip>
+
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header
@@ -50,7 +61,7 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn="span 6"
+          gridColumn="span 8"
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -184,7 +195,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          gridColumn="span 6"
+          gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -203,4 +214,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default StudentView;

@@ -1,60 +1,33 @@
 import { Typography, Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/mockData";
-import Header from "../../components/Header";
+import { tokens } from "../../../theme";
+import { mockDataContacts } from "../../../data/mockData";
 import { useTheme } from "@mui/material";
-import ColorTabs from "../global/ColoredTab";
 import { Link } from "react-router-dom";
 
-const Students = () => {
+const CourseList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "admissionNo", headerName: "Admission Number" },
+    { field: "id", headerName: "CourseId", flex: 0.5 },
+    { field: "admissionNo", headerName: "Level" },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Title",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: "Duration",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "location",
-      headerName: "Location",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "idNo",
-      headerName: "ID Number",
-      flex: 1,
-    },
-    {
       field: "accessLevel",
-      headerName: "Access Level",
+      headerName: "Action",
       flex: 1,
       renderCell: ({ row: { view } }) => {
         return (
@@ -67,7 +40,7 @@ const Students = () => {
             backgroundColor={colors.greenAccent[600]}
             borderRadius="4px"
           >
-            <Link to="/studentView" style={{ textDecoration: "none" }}>
+            <Link to="/courseView" style={{ textDecoration: "none" }}>
               <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
                 VIEW
               </Typography>
@@ -79,14 +52,8 @@ const Students = () => {
   ];
 
   return (
-    <Box m="20px">
-      <Header
-        title="STUDENTS"
-        subtitle="List of Admitted Students"
-      />
-            <ColorTabs value="one"/>
+    <Box>
       <Box
-        m="40px 0 0 0"
         height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
@@ -127,4 +94,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default CourseList;
